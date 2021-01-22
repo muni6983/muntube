@@ -8,12 +8,11 @@ import cookeParser from "cookie-parser";
 import bodyParser from "body-parser";
 //express middleware -body로 부터 정보를 얻을 수 있게 해주는 것?
 //서버가 유저로부터 받은 데이터를 이해하는 방법???
-import { userRouter } from "./router";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
+
 const app = express();
-
-const handleHome = (req, res) => res.send("Hellow from Home");
-
-const handleProfile = (req, res) => res.send("You are on my profile");
 
 app.use(cookeParser());
 app.use(bodyParser.json());
@@ -22,10 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.get("/", handleHome);
-
-app.get("/profile", handleProfile);
-
-app.use("/user", userRouter);
+app.use("/", globalRouter);
+app.use("/users", userRouter);
+app.use("/videos", videoRouter);
 
 export default app;
