@@ -8,13 +8,8 @@ import cookeParser from "cookie-parser";
 import bodyParser from "body-parser";
 //express middleware -body로 부터 정보를 얻을 수 있게 해주는 것?
 //서버가 유저로부터 받은 데이터를 이해하는 방법???
+import { userRouter } from "./router";
 const app = express();
-
-const PORT = 4000;
-
-function handleListening() {
-  console.log(`Listening on: http://localhost:${PORT}`);
-}
 
 const handleHome = (req, res) => res.send("Hellow from Home");
 
@@ -31,4 +26,6 @@ app.get("/", handleHome);
 
 app.get("/profile", handleProfile);
 
-app.listen(PORT, handleListening);
+app.use("/user", userRouter);
+
+export default app;
