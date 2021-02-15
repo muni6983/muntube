@@ -9,10 +9,10 @@ import bodyParser from "body-parser";
 //express middleware -body로 부터 정보를 얻을 수 있게 해주는 것?
 //서버가 유저로부터 받은 데이터를 이해하는 방법???
 import { localsMiddleware } from "./middlewares";
+import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
-import routes from "./routes";
 const app = express();
 
 app.use(helmet());
